@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  PAYMENT:
+    build:
+      context: .
+      dockerfile: payment/Dockerfile
+    image: payment_ms
+    ports:
+      - 80:3000
+    restart: always
+    environment:
+      - PORT=3000
+    depends_on:
+      - RABBITMQ
+    networks:
+      - net_example01
+
+  INVOICES:
+    build:
+      context: .
+      dockerfile: invoices/Dockerfile
+    image: invoices_ms
+    restart: always
+    depends_on:
+      - RABBITMQ
+    networks:
+      - net_example01
+
+  EMAILS:
+    build:
+      context: .
+      dockerfile: emails/Dockerfile
+    image: emails_ms
+    restart: always
+    depends_on:
+      - RABBITMQ
+    networks:
+      - net_example01
+
+  RABBITMQ:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - 5672:5672
+      - 15672:15672
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:15672']
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - net_example01
+
+networks:
+  net_example01:
