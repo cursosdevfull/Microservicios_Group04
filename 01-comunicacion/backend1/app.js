@@ -7,6 +7,7 @@ app.use(cors());
 app.use('/api', router);
 
 app.get('*', (req, res) => {
+  console.log('backend1', req.url);
   res.send('Path not found');
 });
 

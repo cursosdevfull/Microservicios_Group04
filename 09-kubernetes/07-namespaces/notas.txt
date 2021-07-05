@@ -1,0 +1,10 @@
+kubectl get namespaces
+kubectl get ns
+
+kubectl get po -n default
+
+kubectl create ns test-ns
+
+kubectl get pods -n test-ns
+
+kubectl delete ns test-ns

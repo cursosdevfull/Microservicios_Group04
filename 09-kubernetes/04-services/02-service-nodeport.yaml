@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rs-set
+  labels:
+    app: rs-set
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: front
+  template:
+    metadata:
+      labels:
+        app: front
+    spec:
+      containers:
+        - name: container-nginx
+          image: nginx:alpine
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-front02
+spec:
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  selector:
+    app: front

@@ -2,7 +2,7 @@ version: '3'
 
 services:
   frontend:
-    image: frontend
+    image: localhost:5000/frontend
     build:
       dockerfile: frontend/Dockerfile
       context: .
@@ -15,7 +15,7 @@ services:
       - ms-network
 
   backend1:
-    image: backend1
+    image: localhost:5000/backend1
     build:
       dockerfile: backend1/Dockerfile
       context: .
@@ -28,7 +28,7 @@ services:
       - ms-network
 
   backend2:
-    image: backend2
+    image: localhost:5000/backend2
     build:
       dockerfile: backend2/Dockerfile
       context: .

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend2
+  labels:
+    app: backend2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend2
+  template:
+    metadata:
+      labels:
+        app: backend2
+    spec:
+      containers:
+        - name: backend2-pod
+          image: localhost:5000/backend2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3020
+          env:
+            - name: PORT
+              value: '3020'
