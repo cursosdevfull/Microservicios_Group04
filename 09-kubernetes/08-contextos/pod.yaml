@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: serverweb3
+  namespace: test-ns
+spec:
+  containers:
+    - name: contenedor1
+      image: nginx:alpine
