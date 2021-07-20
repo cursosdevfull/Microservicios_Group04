@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  frontend:
+    image: 282865065290.dkr.ecr.us-east-2.amazonaws.com/frontend
+    build:
+      dockerfile: frontend/Dockerfile
+      context: .
+    ports:
+      - 9000:3000
+    environment:
+      - PORT=3000
+      - SERVICE_API1_ENDPOINT=http://localhost:9010/api
+    networks:
+      - ms-network
+
+  backend1:
+    image: 282865065290.dkr.ecr.us-east-2.amazonaws.com/backend1
+    build:
+      dockerfile: backend1/Dockerfile
+      context: .
+    ports:
+      - 9010:3010
+    environment:
+      - PORT=3010
+      - SERVICE_API2_ENDPOINT=http://backend2:3020/api
+    networks:
+      - ms-network
+
+  backend2:
+    image: 282865065290.dkr.ecr.us-east-2.amazonaws.com/backend2
+    build:
+      dockerfile: backend2/Dockerfile
+      context: .
+    environment:
+      - PORT=3020
+    networks:
+      - ms-network
+
+networks:
+  ms-network:
