@@ -26,6 +26,6 @@ spec:
           livenessProbe:
             httpGet:
               path: /api/health
-              port: 3000
+              port: 3020
             initialDelaySeconds: 3
             periodSeconds: 20
