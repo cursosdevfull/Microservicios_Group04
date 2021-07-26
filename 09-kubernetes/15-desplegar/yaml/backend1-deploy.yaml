@@ -20,6 +20,11 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3010
+          resources:
+            limits:
+              memory: '600Mi'
+            requests:
+              memory: '500Mi'
           env:
             - name: SERVICE_API2_ENDPOINT
               value: http://backend2-svc/api
@@ -28,6 +33,6 @@ spec:
           livenessProbe:
             httpGet:
               path: /api/health
-              port: 3000
+              port: 3010
             initialDelaySeconds: 3
             periodSeconds: 20
