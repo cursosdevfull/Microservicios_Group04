@@ -101,7 +101,7 @@ kubectl get deployment -n kube-system aws-load-balancer-controller
 
 - Ir al ECR y crear los repositorios para cada una de las imágenes
 - Usar las url de los repositorios como tag names de cada uno de las imágenes
-  _aplicar en docker-compose-aws.yaml_
+  > _aplicar en docker-compose-aws.yaml_
 
 ```
 docker compose -f docker-compose-aws.yaml build
